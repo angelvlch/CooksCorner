@@ -1,7 +1,6 @@
 import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:cooks_corner/core/constants/app_sizes.dart';
-import 'package:cooks_corner/features/authorization/presentation/authorization_screen.dart';
 import 'package:flutter/material.dart';
 
 class OrangeWelcomeBox extends StatelessWidget {

@@ -4,6 +4,7 @@ import 'package:cooks_corner/core/constants/app_images.dart';
 import 'package:cooks_corner/core/constants/app_sizes.dart';
 import 'package:cooks_corner/core/constants/app_texts.dart';
 import 'package:cooks_corner/features/widgets/custom_text_field.dart';
+import 'package:cooks_corner/features/widgets/navigation_text.dart';
 import 'package:cooks_corner/features/widgets/orange_welcom_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,6 +27,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -55,7 +57,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       onPressed: () {},
                     ),
                   ),
-                  const SizedBox(height: AppSize.s16),
+                  const SizedBox(height: 10),
                   Text(
                     'Gmail',
                     style: AppFonts.s16w500.copyWith(color: AppColors.orange),
@@ -69,7 +71,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       onPressed: () {},
                     ),
                   ),
-                  const SizedBox(height: AppSize.s16),
+                  const SizedBox(height: 10),
                   Text(
                     'Password',
                     style: AppFonts.s16w500.copyWith(color: AppColors.orange),
@@ -81,7 +83,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     suffixIcon: _createSuffixIcon,
                     isObcsure: !isVisible,
                   ),
-                  const SizedBox(height: AppSize.s16),
+                  const SizedBox(height: 10),
                   Text(
                     'Re-Password',
                     style: AppFonts.s16w500.copyWith(color: AppColors.orange),
@@ -94,6 +96,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     isObcsure: !isRePasswordVisible,
                   ),
                 ],
+              ),
+            ),
+            SizedBox(height: 130),
+            Container(
+              padding: const EdgeInsets.only(bottom: 30),
+              alignment: Alignment.bottomCenter,
+              child: const NavigationText(
+                clickableText: 'Sign In Now',
+                unclickableText: 'Already have an account?  ',
               ),
             ),
           ],
