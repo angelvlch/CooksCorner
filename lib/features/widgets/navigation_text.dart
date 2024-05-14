@@ -23,13 +23,9 @@ class NavigationText extends StatelessWidget {
         children: <TextSpan>[
           TextSpan(text: unclickableText),
           TextSpan(
-            text: clickableText,
-            style: const TextStyle(color: AppColors.orange),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Navigator.of(context).pushNamed('/registration');
-              },
-          ),
+              text: clickableText,
+              style: const TextStyle(color: AppColors.orange),
+              recognizer: TapGestureRecognizer()..onTap = onTap),
         ],
       ),
     );

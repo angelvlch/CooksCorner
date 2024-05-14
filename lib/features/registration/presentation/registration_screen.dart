@@ -3,6 +3,8 @@ import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:cooks_corner/core/constants/app_images.dart';
 import 'package:cooks_corner/core/constants/app_sizes.dart';
 import 'package:cooks_corner/core/constants/app_texts.dart';
+import 'package:cooks_corner/core/routes/route.dart';
+import 'package:cooks_corner/features/widgets/custom_button.dart';
 import 'package:cooks_corner/features/widgets/custom_text_field.dart';
 import 'package:cooks_corner/features/widgets/navigation_text.dart';
 import 'package:cooks_corner/features/widgets/orange_welcom_box.dart';
@@ -27,15 +29,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
             const OrangeWelcomeBox(
               text: AppTexts.registrationText,
-              ratio: 3.6,
+              ratio: 3.9,
               boldText: AppTexts.registrationBoldText,
-              isRegistrationScreen: true,
             ),
             const SizedBox(height: AppSize.s20),
             Padding(
@@ -95,14 +96,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     suffixIcon: _createSuffixIconRePassword,
                     isObcsure: !isRePasswordVisible,
                   ),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                    text: AppTexts.signUp,
+                    onTap: () => Navigator.pushNamedAndRemoveUntil(
+                        context, Routes.authorization, (route) => false),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 130),
+            SizedBox(height: MediaQuery.sizeOf(context).height * 0.12),
             Container(
               padding: const EdgeInsets.only(bottom: 30),
               alignment: Alignment.bottomCenter,
-              child: const NavigationText(
+              child: NavigationText(
+                onTap: () => Navigator.pushNamedAndRemoveUntil(
+                    context, Routes.authorization, (route) => false),
                 clickableText: 'Sign In Now',
                 unclickableText: 'Already have an account?  ',
               ),

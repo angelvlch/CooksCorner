@@ -7,13 +7,11 @@ class OrangeWelcomeBox extends StatelessWidget {
   final String text;
   final double ratio;
   final String boldText;
-  final bool? isRegistrationScreen;
   const OrangeWelcomeBox({
     super.key,
     required this.text,
     required this.ratio,
     required this.boldText,
-    this.isRegistrationScreen,
   });
 
   @override
@@ -30,14 +28,6 @@ class OrangeWelcomeBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (isRegistrationScreen != null)
-              IconButton(
-                  onPressed: () => Navigator.of(context)
-                      .pushNamedAndRemoveUntil('/', (route) => false),
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.background,
-                  )),
             RichText(
               text: TextSpan(
                 text: text,

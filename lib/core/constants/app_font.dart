@@ -26,4 +26,9 @@ class AppFonts {
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
+  static const s14w500 = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
 }
