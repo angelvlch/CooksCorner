@@ -1,12 +1,50 @@
 part of 'registration_bloc.dart';
 
-@immutable
-sealed class RegistrationState {}
+abstract class RegistrationState {
+  final RegistrationModel model;
+  const RegistrationState(this.model);
+}
 
-final class RegistrationInitial extends RegistrationState {}
+class RegistrationInitial extends RegistrationState {
+  RegistrationInitial() : super(RegistrationModel.empty());
+}
 
-final class RegistrationFailure extends RegistrationState {
-  final String errorMessage;
+class RegistrationModelChanged extends RegistrationState {
+  final RegistrationModel model;
+  RegistrationModelChanged(this.model) : super(model);
+}
 
-  RegistrationFailure({required this.errorMessage});
+class RegistrationModel {
+  final String email;
+  final String userName;
+  final String password;
+  final String confirmPassword;
+  final bool isValidForRegistration;
+
+  factory RegistrationModel.empty() {
+    return RegistrationModel('', '', '', '', false);
+  }
+
+  RegistrationModel(
+    this.email,
+    this.userName,
+    this.password,
+    this.confirmPassword,
+    this.isValidForRegistration,
+  );
+
+  RegistrationModel copyWith({
+    @required isValid,
+    String? email,
+    String? userName,
+    String? password,
+    String? confirmPassword,
+  }) {
+    return RegistrationModel(
+        email ?? this.email,
+        userName ?? this.userName,
+        password ?? this.password,
+        confirmPassword ?? this.confirmPassword,
+        isValid);
+  }
 }

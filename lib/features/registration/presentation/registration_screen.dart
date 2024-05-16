@@ -63,6 +63,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       const SizedBox(height: 5),
                       CustomTextField(
+                        onChanged: (value) => context
+                            .read<RegistrationBloc>()
+                            .add(NameChanged(name: value)),
                         controller: nameController,
                         hintText: 'Enter your name',
                         suffixIcon: IconButton(
@@ -78,6 +81,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       const SizedBox(height: 5),
                       CustomTextField(
+                        onChanged: (value) => context
+                            .read<RegistrationBloc>()
+                            .add(emailChanged(email: value)),
                         controller: emailController,
                         hintText: 'Enter your email',
                         suffixIcon: IconButton(
@@ -93,10 +99,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       const SizedBox(height: 5),
                       CustomTextField(
+                        onChanged: (value) {},
                         controller: passwordController,
                         hintText: 'Enter your password',
                         suffixIcon: _createSuffixIcon,
                         isObcsure: !isVisible,
+                        isPasswordTheSame:
+                            state is PasswordIsNotSame ? false : true,
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -106,17 +115,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       const SizedBox(height: 5),
                       CustomTextField(
+                        onChanged: (value) {},
                         controller: rePasswordController,
                         hintText: 'Re-Enter your password',
                         suffixIcon: _createSuffixIconRePassword,
                         isObcsure: !isRePasswordVisible,
+                        isPasswordTheSame:
+                            state is PasswordIsNotSame ? false : true,
                       ),
                       const SizedBox(height: 10),
                       CustomButton(
-                        text: AppTexts.signUp,
-                        onTap: () => Navigator.pushNamedAndRemoveUntil(
-                            context, Routes.authorization, (route) => false),
-                      ),
+                          text: AppTexts.signUp,
+                          onTap: () {
+                            context.read<RegistrationBloc>().add(SubmitData());
+                          }),
                     ],
                   ),
                 ),
