@@ -21,10 +21,6 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController rePasswordController = TextEditingController();
   bool isVisible = false;
   bool isRePasswordVisible = false;
 
@@ -34,11 +30,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       //resizeToAvoidBottomInset: false,
       body: BlocConsumer<RegistrationBloc, RegistrationState>(
         listener: (context, state) {
-          if (state is RegistrationFailure) {
+          /*  if (state is RegistrationFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Ошибка: ${state.errorMessage}')),
             );
-          }
+          } */
         },
         builder: (context, state) {
           return SingleChildScrollView(
@@ -66,7 +62,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         onChanged: (value) => context
                             .read<RegistrationBloc>()
                             .add(NameChanged(name: value)),
-                        controller: nameController,
                         hintText: 'Enter your name',
                         suffixIcon: IconButton(
                           icon: SvgPicture.asset(AppImages.person),
@@ -83,8 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       CustomTextField(
                         onChanged: (value) => context
                             .read<RegistrationBloc>()
-                            .add(emailChanged(email: value)),
-                        controller: emailController,
+                            .add(EmailChanged(email: value)),
                         hintText: 'Enter your email',
                         suffixIcon: IconButton(
                           icon: SvgPicture.asset(AppImages.email),
@@ -99,13 +93,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       const SizedBox(height: 5),
                       CustomTextField(
-                        onChanged: (value) {},
-                        controller: passwordController,
+                        onChanged: (value) => context
+                            .read<RegistrationBloc>()
+                            .add(PasswordChanged(password: value)),
                         hintText: 'Enter your password',
                         suffixIcon: _createSuffixIcon,
                         isObcsure: !isVisible,
-                        isPasswordTheSame:
-                            state is PasswordIsNotSame ? false : true,
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -115,20 +108,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       const SizedBox(height: 5),
                       CustomTextField(
-                        onChanged: (value) {},
-                        controller: rePasswordController,
+                        isValid: state.model.isPasswordTheSame(),
+                        onChanged: (value) => context
+                            .read<RegistrationBloc>()
+                            .add(RePassworChanged(rePassword: value)),
                         hintText: 'Re-Enter your password',
                         suffixIcon: _createSuffixIconRePassword,
                         isObcsure: !isRePasswordVisible,
-                        isPasswordTheSame:
-                            state is PasswordIsNotSame ? false : true,
                       ),
                       const SizedBox(height: 10),
                       CustomButton(
-                          text: AppTexts.signUp,
-                          onTap: () {
-                            context.read<RegistrationBloc>().add(SubmitData());
-                          }),
+                        text: AppTexts.signUp,
+                        onTap: state.model.isValidForRegistration
+                            ? () {
+                                context
+                                    .read<RegistrationBloc>()
+                                    .add(SubmitData());
+                              }
+                            : null,
+                      ),
                     ],
                   ),
                 ),

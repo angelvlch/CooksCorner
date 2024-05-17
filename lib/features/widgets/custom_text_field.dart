@@ -5,23 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
   final String hintText;
   final Color backgroundColor;
-  final bool isPasswordTheSame;
+
   final String? errorMessage;
   final void Function(String) onChanged;
+  final bool isValid;
 
   final bool isObcsure;
   final Widget? suffixIcon;
   const CustomTextField({
     super.key,
-    required this.controller,
+    this.isValid = true,
     required this.hintText,
     this.backgroundColor = AppColors.inputFieldBackground,
     this.isObcsure = false,
     this.suffixIcon,
-    this.isPasswordTheSame = true,
     this.errorMessage,
     required this.onChanged,
   });
@@ -30,13 +29,12 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       onChanged: onChanged,
-      controller: controller,
       obscureText: isObcsure,
       obscuringCharacter: '*',
       decoration: InputDecoration(
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSize.radius),
-          borderSide: isPasswordTheSame
+          borderSide: isValid
               ? BorderSide.none
               : const BorderSide(
                   color: AppColors.red,
@@ -51,7 +49,7 @@ class CustomTextField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(horizontal: AppSize.s20),
         fillColor: backgroundColor,
         filled: true,
-        errorText: isPasswordTheSame ? null : 'Пароли не совпадают',
+        errorText: isValid ? null : 'Пароли не совпадают',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSize.radius),
           borderSide: BorderSide.none,

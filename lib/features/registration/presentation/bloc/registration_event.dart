@@ -16,10 +16,10 @@ class NameChanged extends RegistrationEvent {
   NameChanged({required this.name});
 }
 
-class PassworChanged extends RegistrationEvent {
+class PasswordChanged extends RegistrationEvent {
   final String password;
 
-  PassworChanged({required this.password});
+  PasswordChanged({required this.password});
 }
 
 class RePassworChanged extends RegistrationEvent {

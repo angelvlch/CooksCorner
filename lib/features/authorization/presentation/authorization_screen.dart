@@ -52,7 +52,6 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.006),
                     CustomTextField(
                       onChanged: (value) {},
-                      controller: emailController,
                       hintText: 'Enter your email',
                       suffixIcon: IconButton(
                         icon: SvgPicture.asset(AppImages.email),
@@ -67,7 +66,6 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.006),
                     CustomTextField(
                       onChanged: (value) {},
-                      controller: passwordController,
                       hintText: 'Enter your password',
                       suffixIcon: _createSuffixIcon,
                       isObcsure: !isVisible,
