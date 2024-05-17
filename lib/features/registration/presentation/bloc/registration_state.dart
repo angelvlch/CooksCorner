@@ -19,3 +19,7 @@ class RegistrationFailure extends RegistrationState {
 
   RegistrationFailure(super.model, {required this.errorMessage});
 }
+
+class RegistrationSuccess extends RegistrationState {
+  RegistrationSuccess(super.model);
+}

@@ -10,7 +10,9 @@ class RegistrationModel {
   }
 
   bool isPasswordTheSame() {
-    return password == confirmPassword || confirmPassword == '';
+    return password == confirmPassword ||
+        confirmPassword == '' ||
+        confirmPassword.isEmpty;
   }
 
   bool isNameValid() {
@@ -22,7 +24,7 @@ class RegistrationModel {
   }
 
   bool isEmailValid() {
-    return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+    return RegExp(r'^[a-zA-Z][a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$')
             .hasMatch(email) ||
         email == '';
   }

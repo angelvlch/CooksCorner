@@ -24,6 +24,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       SubmitData event, Emitter<RegistrationState> emit) async {
     try {
       await useCase.call(event.model);
+      emit(RegistrationSuccess(event.model));
     } catch (error) {
       emit(RegistrationFailure(event.model, errorMessage: error.toString()));
     }
@@ -85,7 +86,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         name.length >= 3 &&
         name.length <= 30;
     final isEmailValid =
-        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+        RegExp(r'^[a-zA-Z][a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$')
             .hasMatch(email);
     final isPasswordValid =
         RegExp(r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{8,15}$')

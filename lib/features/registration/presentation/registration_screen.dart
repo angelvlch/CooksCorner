@@ -34,6 +34,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Error: ${state.errorMessage}')),
             );
+          } else if (state is RegistrationSuccess) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, Routes.authorization, (route) => false);
           }
         },
         builder: (context, state) {
