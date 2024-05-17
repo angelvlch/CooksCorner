@@ -10,24 +10,28 @@ class RegistrationModel {
   }
 
   bool isPasswordTheSame() {
-    return password == confirmPassword;
-  }
-
-  bool isEmailValid() {
-    return RegExp(r'^[a-zA-Z]+$').hasMatch(userName) &&
-        userName.length >= 3 &&
-        userName.length <= 30;
+    return password == confirmPassword || confirmPassword == '';
   }
 
   bool isNameValid() {
+    return RegExp(r'^[a-zA-Z]+$').hasMatch(userName) &&
+            userName.length >= 3 &&
+            userName.length <= 30 ||
+        userName == '' ||
+        userName.isEmpty;
+  }
+
+  bool isEmailValid() {
     return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-        .hasMatch(email);
+            .hasMatch(email) ||
+        email == '';
   }
 
   bool isPasswordValid() {
     return RegExp(
-            r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{8,15}$')
-        .hasMatch(password);
+                r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=]).{8,15}$')
+            .hasMatch(password) ||
+        password == '';
   }
 
   bool isRegistrationValid() {
@@ -49,7 +53,7 @@ class RegistrationModel {
       'email': email,
       'username': userName,
       'password': password,
-      'confirmPassword': confirmPassword,
+      'confirm_password': confirmPassword,
     };
   }
 

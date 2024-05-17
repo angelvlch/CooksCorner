@@ -30,11 +30,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       //resizeToAvoidBottomInset: false,
       body: BlocConsumer<RegistrationBloc, RegistrationState>(
         listener: (context, state) {
-          /*  if (state is RegistrationFailure) {
+          if (state is RegistrationFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Ошибка: ${state.errorMessage}')),
+              SnackBar(content: Text('Error: ${state.errorMessage}')),
             );
-          } */
+          }
         },
         builder: (context, state) {
           return SingleChildScrollView(
@@ -67,6 +67,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           icon: SvgPicture.asset(AppImages.person),
                           onPressed: () {},
                         ),
+                        errorMessage: 'Неверный логин',
+                        isValid: state.model.isNameValid(),
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -84,6 +86,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           icon: SvgPicture.asset(AppImages.email),
                           onPressed: () {},
                         ),
+                        isValid: state.model.isEmailValid(),
+                        errorMessage: 'Неверный email',
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -99,6 +103,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         hintText: 'Enter your password',
                         suffixIcon: _createSuffixIcon,
                         isObcsure: !isVisible,
+                        isValid: state.model.isPasswordValid(),
+                        errorMessage: 'Неправильный пароль',
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -115,6 +121,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         hintText: 'Re-Enter your password',
                         suffixIcon: _createSuffixIconRePassword,
                         isObcsure: !isRePasswordVisible,
+                        errorMessage: 'Пароли не совпадают',
                       ),
                       const SizedBox(height: 10),
                       CustomButton(
@@ -123,7 +130,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ? () {
                                 context
                                     .read<RegistrationBloc>()
-                                    .add(SubmitData());
+                                    .add(SubmitData(model: state.model));
                               }
                             : null,
                       ),

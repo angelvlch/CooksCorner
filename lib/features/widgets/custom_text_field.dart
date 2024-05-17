@@ -49,7 +49,7 @@ class CustomTextField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(horizontal: AppSize.s20),
         fillColor: backgroundColor,
         filled: true,
-        errorText: isValid ? null : 'Пароли не совпадают',
+        errorText: isValid ? null : errorMessage,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSize.radius),
           borderSide: BorderSide.none,

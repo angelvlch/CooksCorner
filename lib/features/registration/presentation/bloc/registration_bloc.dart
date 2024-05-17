@@ -13,7 +13,7 @@ part 'registration_state.dart';
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   final RegistrationUseCase useCase;
   RegistrationBloc({required this.useCase}) : super(RegistrationInitial()) {
-    on<RegistrationEvent>(_submitData);
+    on<SubmitData>(_submitData);
     on<EmailChanged>(_updateEmail);
     on<NameChanged>(_updateName);
     on<PasswordChanged>(_updatePassword);
@@ -21,9 +21,11 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   }
 
   FutureOr<void> _submitData(
-      RegistrationEvent event, Emitter<RegistrationState> emit) async {
-    try {} catch (e) {
-      //  emit(RegistrationFailure(errorMessage: e.toString()));
+      SubmitData event, Emitter<RegistrationState> emit) async {
+    try {
+      await useCase.call(event.model);
+    } catch (error) {
+      emit(RegistrationFailure(event.model, errorMessage: error.toString()));
     }
   }
 

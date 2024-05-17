@@ -9,14 +9,15 @@ class RemoteRegistrationDataSource {
 
   Future<void> sendData(RegistrationModel model) async {
     try {
-      final response = await _dio.post(
+      await _dio.post(
         'https://cooks-corner-28c47e768d59.herokuapp.com/api/auth/signUp',
         data: model.toJson(),
       );
       print('ff');
     } on DioException catch (e) {
-      print('НАША ОШИБКА ${e.response!.statusCode}|||||');
-      throw ('Что-то пошло не так');
+      final errorMessage = e.response!.data['message'];
+
+      throw (errorMessage);
     }
   }
 }

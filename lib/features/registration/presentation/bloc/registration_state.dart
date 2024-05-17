@@ -13,3 +13,9 @@ class RegistrationModelChanged extends RegistrationState {
   final RegistrationModel model;
   RegistrationModelChanged(this.model) : super(model);
 }
+
+class RegistrationFailure extends RegistrationState {
+  final String errorMessage;
+
+  RegistrationFailure(super.model, {required this.errorMessage});
+}
