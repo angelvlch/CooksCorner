@@ -1,8 +1,10 @@
 import 'package:cooks_corner/core/constants/app_images.dart';
 import 'package:cooks_corner/features/home/home_screen.dart';
+import 'package:cooks_corner/features/main/presentation/bloc/main_page_bloc.dart';
 import 'package:cooks_corner/features/profile/profile_screen.dart';
 import 'package:cooks_corner/features/search/seatch_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MainScreen extends StatefulWidget {
@@ -36,12 +38,26 @@ class _MainScreenState extends State<MainScreen> {
     const SearchScreen(),
     const ProfileScreen(),
   ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        destinations: bottomNavItems,
-      ),
+    return BlocConsumer<MainPageBloc, MainPageState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+          bottomNavigationBar: NavigationBar(
+            onDestinationSelected: (index) {
+              BlocProvider.of<MainPageBloc>(context)
+                  .add(TabChange(tabIndex: index));
+            },
+            selectedIndex: state.tabIndex,
+            destinations: bottomNavItems,
+          ),
+          body: bottomNavScreens[state.tabIndex],
+        );
+      },
     );
   }
 }
