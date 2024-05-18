@@ -1,4 +1,9 @@
+import 'package:cooks_corner/features/authorization/data/remote/authorization_data_source.dart';
+import 'package:cooks_corner/features/authorization/data/repository/authorization_repo_imp.dart';
+import 'package:cooks_corner/features/authorization/domain/use_case/authorization_use_case.dart';
 import 'package:cooks_corner/features/authorization/presentation/authorization_screen.dart';
+import 'package:cooks_corner/features/authorization/presentation/bloc/authorization_bloc.dart';
+import 'package:cooks_corner/features/main/presentation/main_screen.dart';
 import 'package:cooks_corner/features/registration/data/data_source/remote_data_source.dart';
 import 'package:cooks_corner/features/registration/data/repository/registration_repo.dart';
 import 'package:cooks_corner/features/registration/domain/repository/registratrion_repo.dart';
@@ -17,6 +22,7 @@ class App extends StatelessWidget {
     return {
       Routes.authorization: (context) => const AuthorizationScreen(),
       Routes.registration: (context) => const RegistrationScreen(),
+      Routes.main: (context) => const MainScreen(),
     };
   }
 
@@ -25,10 +31,22 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (context) => AuthorizationBloc(
+            useCase: AuthorizationUseCase(
+              repo: AuthorizationRepoImp(
+                dataSource: AuthorizationDataSource(dio: Dio()),
+              ),
+            ),
+          ),
+        ),
+        BlocProvider(
           create: (context) => RegistrationBloc(
-              useCase: RegistrationUseCase(
-                  repo: RegistrationRepoImpl(
-                      dataSource: RemoteRegistrationDataSource(dio: Dio())))),
+            useCase: RegistrationUseCase(
+              repo: RegistrationRepoImpl(
+                dataSource: RemoteRegistrationDataSource(dio: Dio()),
+              ),
+            ),
+          ),
         ),
       ],
       child: MaterialApp(
