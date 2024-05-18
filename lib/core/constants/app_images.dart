@@ -13,4 +13,7 @@ class AppImages {
 
   static const searchActive = 'assets/icon/search_active.svg';
   static const searchUnActive = 'assets/icon/search_unactive.svg';
+
+  static const like = 'assets/icon/like.svg';
+  static const save = 'assets/icon/savesvg.svg';
 }

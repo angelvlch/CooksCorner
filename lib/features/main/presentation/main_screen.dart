@@ -1,3 +1,4 @@
+import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_images.dart';
 import 'package:cooks_corner/features/home/home_screen.dart';
 import 'package:cooks_corner/features/main/presentation/bloc/main_page_bloc.dart';
@@ -48,10 +49,14 @@ class _MainScreenState extends State<MainScreen> {
       builder: (context, state) {
         return Scaffold(
           bottomNavigationBar: NavigationBar(
+            surfaceTintColor: AppColors.background,
+            indicatorColor: AppColors.background,
             onDestinationSelected: (index) {
               BlocProvider.of<MainPageBloc>(context)
                   .add(TabChange(tabIndex: index));
             },
+            height: MediaQuery.sizeOf(context).height / 11,
+            indicatorShape: const CircleBorder(side: BorderSide.none),
             selectedIndex: state.tabIndex,
             destinations: bottomNavItems,
           ),
