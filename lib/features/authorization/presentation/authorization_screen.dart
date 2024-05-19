@@ -23,8 +23,6 @@ class AuthorizationScreen extends StatefulWidget {
 }
 
 class _AuthorizationScreenState extends State<AuthorizationScreen> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   bool isVisible = false;
 
   @override
@@ -39,7 +37,8 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
             );
           } else if (state is AuthorizationSuccess) {
             Navigator.pushNamedAndRemoveUntil(
-                context, Routes.main, (route) => false);
+                context, Routes.main, (route) => false,
+                arguments: state.model.token);
           }
         },
         builder: (context, state) {
@@ -112,7 +111,6 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
               ),
               Container(
                 padding: const EdgeInsets.only(bottom: 30),
-                // alignment: Alignment.bottomCenter,
                 child: NavigationText(
                   onTap: () => Navigator.pushNamedAndRemoveUntil(
                       context, Routes.registration, (route) => false),

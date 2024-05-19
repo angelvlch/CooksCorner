@@ -1,4 +1,3 @@
-import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_images.dart';
 import 'package:cooks_corner/features/home/home_screen.dart';
 import 'package:cooks_corner/features/main/presentation/bloc/main_page_bloc.dart';
@@ -17,50 +16,47 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final bottomNavItems = [
-    NavigationDestination(
+    BottomNavigationBarItem(
       icon: SvgPicture.asset(AppImages.cottageUnActive),
-      selectedIcon: SvgPicture.asset(AppImages.cottageActive),
+      activeIcon: SvgPicture.asset(AppImages.cottageActive),
       label: '',
     ),
-    NavigationDestination(
+    BottomNavigationBarItem(
       icon: SvgPicture.asset(AppImages.searchUnActive),
-      selectedIcon: SvgPicture.asset(AppImages.searchActive),
+      activeIcon: SvgPicture.asset(AppImages.searchActive),
       label: '',
     ),
-    NavigationDestination(
+    BottomNavigationBarItem(
       icon: SvgPicture.asset(AppImages.accountUnActive),
-      selectedIcon: SvgPicture.asset(AppImages.accountActive),
+      activeIcon: SvgPicture.asset(AppImages.accountActive),
       label: '',
     ),
-  ];
-
-  final bottomNavScreens = [
-    const HomeScreen(),
-    const SearchScreen(),
-    const ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final token = ModalRoute.of(context)?.settings.arguments as String;
     return BlocConsumer<MainPageBloc, MainPageState>(
       listener: (context, state) {
         // TODO: implement listener
       },
       builder: (context, state) {
         return Scaffold(
-          bottomNavigationBar: NavigationBar(
-            surfaceTintColor: AppColors.background,
-            indicatorColor: AppColors.background,
-            onDestinationSelected: (index) {
+          bottomNavigationBar: BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: bottomNavItems,
+            currentIndex: state.tabIndex,
+            onTap: (index) {
               BlocProvider.of<MainPageBloc>(context)
                   .add(TabChange(tabIndex: index));
             },
-            height: MediaQuery.sizeOf(context).height / 11,
-            indicatorShape: const CircleBorder(side: BorderSide.none),
-            selectedIndex: state.tabIndex,
-            destinations: bottomNavItems,
           ),
-          body: bottomNavScreens[state.tabIndex],
+          body: [
+            HomeScreen(token: token),
+            const SearchScreen(),
+            const ProfileScreen(),
+          ][state.tabIndex],
         );
       },
     );

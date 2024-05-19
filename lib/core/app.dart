@@ -21,7 +21,7 @@ class App extends StatelessWidget {
 
   Map<String, WidgetBuilder> get _routes {
     return {
-      Routes.authorization: (context) => const MainScreen(),
+      Routes.authorization: (context) => const AuthorizationScreen(),
       Routes.registration: (context) => const RegistrationScreen(),
       Routes.main: (context) => const MainScreen(),
     };
