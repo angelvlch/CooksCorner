@@ -78,103 +78,95 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const OrangeWelcomeBox(
-                text: 'Hi, ', ratio: 4, boldText: 'USERNAME'),
-            const SizedBox(
-              height: 20,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text('Category', style: AppFonts.s18w500),
-            ),
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width,
-              child: TabBar(
-                dividerHeight: 0,
-                indicatorWeight: 0,
-                // padding: const EdgeInsets.only(left: 5),
-                tabAlignment: TabAlignment.start,
-                isScrollable: true,
-                indicator: const UnderlineTabIndicator(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  borderSide: BorderSide(
-                    width: 2.0,
-                    color: AppColors.text,
-                  ),
-                  insets: EdgeInsets.symmetric(horizontal: 15.0),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const OrangeWelcomeBox(text: 'Hi, ', ratio: 4, boldText: 'USERNAME'),
+          const SizedBox(
+            height: 20,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text('Category', style: AppFonts.s18w500),
+          ),
+          SizedBox(
+            width: MediaQuery.sizeOf(context).width,
+            child: TabBar(
+              dividerHeight: 0,
+              indicatorWeight: 0,
+              // padding: const EdgeInsets.only(left: 5),
+              tabAlignment: TabAlignment.start,
+              isScrollable: true,
+              indicator: const UnderlineTabIndicator(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderSide: BorderSide(
+                  width: 2.0,
+                  color: AppColors.text,
                 ),
-                unselectedLabelColor: AppColors.textFaded,
-                labelColor: AppColors.text,
-                labelStyle: AppFonts.s14w500,
-                controller: _tabController,
-                tabs: myTabs
-                    .map((tab) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: tab,
-                        ))
-                    .toList(),
+                insets: EdgeInsets.symmetric(horizontal: 15.0),
               ),
+              unselectedLabelColor: AppColors.textFaded,
+              labelColor: AppColors.text,
+              labelStyle: AppFonts.s14w500,
+              controller: _tabController,
+              tabs: myTabs
+                  .map((tab) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: tab,
+                      ))
+                  .toList(),
             ),
-            const SizedBox(
-              height: 10,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  shrinkWrap: true,
+                  physics: const ScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 0.75,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15,
+                  ),
+                  itemCount: 15,
+                  itemBuilder: (context, index) => const RecipeCard(),
+                ),
+                GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  shrinkWrap: true,
+                  physics: const ScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.75,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
+                  ),
+                  itemCount: 15,
+                  itemBuilder: (context, index) => const RecipeCard(),
+                ),
+                GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  shrinkWrap: true,
+                  physics: const ScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 15,
+                    childAspectRatio: 0.75,
+                    mainAxisSpacing: 15,
+                  ),
+                  itemCount: 15,
+                  itemBuilder: (context, index) => const RecipeCard(),
+                ),
+              ],
             ),
-            SizedBox(
-              // width: MediaQuery.sizeOf(context).width,
-              height: MediaQuery.sizeOf(context).height * 3,
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  GridView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.75,
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 15,
-                    ),
-                    itemCount: 15,
-                    itemBuilder: (context, index) => const RecipeCard(),
-                  ),
-                  GridView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.75,
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                    ),
-                    itemCount: 15,
-                    itemBuilder: (context, index) => const RecipeCard(),
-                  ),
-                  GridView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 15,
-                      childAspectRatio: 0.75,
-                      mainAxisSpacing: 15,
-                    ),
-                    itemCount: 15,
-                    itemBuilder: (context, index) => const RecipeCard(),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

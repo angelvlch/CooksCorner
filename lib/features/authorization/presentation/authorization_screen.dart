@@ -98,11 +98,14 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                             height: MediaQuery.sizeOf(context).height * 0.018),
                         CustomButton(
                           text: AppTexts.signIn,
-                          onTap: state.entity.isEntityValid()
+                          onTap: () => Navigator.pushNamedAndRemoveUntil(
+                              context, Routes.main, (route) => false,
+                              arguments:
+                                  'f'), /* state.entity.isEntityValid()
                               ? () => context.read<AuthorizationBloc>().add(
                                     SubmitData(entity: state.entity),
                                   )
-                              : null,
+                              : null, */
                         ),
                       ],
                     ),
