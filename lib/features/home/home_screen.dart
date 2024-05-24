@@ -123,10 +123,11 @@ class _HomeScreenState extends State<HomeScreen>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
-                GridView.builder(
+              children: List.generate(
+                myTabs.length,
+                (index) => GridView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  shrinkWrap: true,
+                  //  shrinkWrap: true,
                   physics: const ScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 0.75,
@@ -137,33 +138,7 @@ class _HomeScreenState extends State<HomeScreen>
                   itemCount: 15,
                   itemBuilder: (context, index) => const RecipeCard(),
                 ),
-                GridView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.75,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                  ),
-                  itemCount: 15,
-                  itemBuilder: (context, index) => const RecipeCard(),
-                ),
-                GridView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 15,
-                    childAspectRatio: 0.75,
-                    mainAxisSpacing: 15,
-                  ),
-                  itemCount: 15,
-                  itemBuilder: (context, index) => const RecipeCard(),
-                ),
-              ],
+              ),
             ),
           ),
         ],
