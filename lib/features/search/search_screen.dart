@@ -72,7 +72,6 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         body: const Column(
           children: [
-            SizedBox(height: 24),
             Expanded(
               child: TabBarView(children: [
                 Icon(Icons.flight, size: 350),
