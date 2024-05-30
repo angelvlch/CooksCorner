@@ -1,5 +1,6 @@
 import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
+import 'package:cooks_corner/features/widgets/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -70,9 +71,14 @@ class _SearchScreenState extends State<SearchScreen> {
             textAlign: TextAlign.center,
           ),
         ),
-        body: const Column(
+        body: Column(
           children: [
-            Expanded(
+            CustomTextField(
+              hintText: 'Search recipes',
+              onChanged: (p0) {},
+              suffixIcon: const Icon(Icons.search),
+            ),
+            const Expanded(
               child: TabBarView(children: [
                 Icon(Icons.flight, size: 350),
                 Icon(Icons.directions_transit, size: 350),
