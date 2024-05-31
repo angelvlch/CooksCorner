@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cooks_corner/core/constants/app_colors.dart';
+import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,9 +44,22 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 height: MediaQuery.sizeOf(context).height * 570 / 852,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    color: AppColors.background,
-                    borderRadius: BorderRadius.circular(36)),
+                  color: AppColors.background,
+                  borderRadius: BorderRadius.circular(36),
+                ),
+                child: const SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('NAME', style: AppFonts.s22w500),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
