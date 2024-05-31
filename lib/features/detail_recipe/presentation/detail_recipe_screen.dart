@@ -18,8 +18,15 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
         child: Stack(
           children: [
             CachedNetworkImage(
-                imageUrl:
-                    'https://s3-alpha-sig.figma.com/img/1070/ad91/9fab35f5cea96371d4e9e5cff3474762?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZiO-r2hgkUjNQNcWVRsPfys72C80kSC~4FlRzdgnlT0UaTpE3ePGt2kECIwf4dBgm19t1teZ3aroo1joTi4nJ9MciLqmin8NApmHnuYV7cCzvZYj~0eB6XhCN--9CAOiO1PgbMdoRzetK1xg2eofUtXdwedHQBwWgo-uIC~6SXfBHRhfMvPMXYPI04-1-iMf6J9OH6WQE9HHdsTmbkfoTRwSjlJkaMxrJOmXrawssl4GjaIBMHxf5~GVvecJyHy9TnSBeSCEzhTLO20cenIoIWCviMcWlspioP8KY2MqvDROFw6v7XwIk4AFVa~ahCKThAohcaS5SCgcl9MONqHrOQ__'),
+              placeholder: (context, url) => const CircularProgressIndicator(),
+/*               imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ), */
+              imageUrl:
+                  'https://s3-alpha-sig.figma.com/img/60a8/fb40/0136c54edf4e723f8270242c7c79b16c?Expires=1717977600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MFzVzaUGFd2KsRN4WsmYw9Aq8lOB4b6IB~LaSZ1fnlnlB6LzqeMNgiV8mlnSMZQN6Vw5yMqbZk0PkD5rdN-~68dOQur~DNlPXu6tHVyigS1p16nLv36--pjqL6Ul2d8ORwbJthonufT8hnT8D5iibJzCO3NP2R5jg6bPzcKdtMd-T5~dfwx4IWxd~rlizY7Gr95dycoDz4IpEYbkhtvRVlqpU8OirZtqCjYDu8Y13nejznBoRS6wIPonS9T3KlSR9o026h8RBYUrCVxnk3tMxw9mirn2BRAIqlTkFG-DhSr~azx-PyiUmSlAKElJM9mxjqeM9IWFaORtpjOonk83fA__',
+            ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: IconButton(
