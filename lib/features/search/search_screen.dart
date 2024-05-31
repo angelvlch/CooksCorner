@@ -1,5 +1,7 @@
 import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
+import 'package:cooks_corner/core/constants/app_images.dart';
+import 'package:cooks_corner/features/widgets/custom_button.dart';
 import 'package:cooks_corner/features/widgets/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,20 +73,68 @@ class _SearchScreenState extends State<SearchScreen> {
             textAlign: TextAlign.center,
           ),
         ),
-        body: Column(
-          children: [
-            CustomTextField(
-              hintText: 'Search recipes',
-              onChanged: (p0) {},
-              suffixIcon: const Icon(Icons.search),
-            ),
-            const Expanded(
-              child: TabBarView(children: [
-                Icon(Icons.flight, size: 350),
-                Icon(Icons.directions_transit, size: 350),
-              ]),
-            )
-          ],
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomTextField(
+                hintText: 'Search recipes',
+                onChanged: (p0) {},
+                suffixIcon: const Icon(Icons.search),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Search results',
+                style: AppFonts.s12w400.copyWith(color: AppColors.textFaded),
+              ),
+              const SizedBox(height: 12),
+              Expanded(
+                child: TabBarView(children: [
+                  ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: Icon(Icons.restaurant),
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Restaurant'),
+                              Text('View',
+                                  style: AppFonts.s14w400
+                                      .copyWith(color: AppColors.orange)),
+                            ],
+                          ),
+
+                          trailing: IconButton(
+                              // padding: EdgeInsets.only(right: 30),
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.arrow_right_alt_outlined,
+                                color: AppColors.orange,
+                              )),
+                          //     subtitle: Text('Chefs'),
+                        );
+                      }),
+                  ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: Icon(Icons.restaurant),
+                          title: Text('Recipes'),
+                          //  subtitle: Text('Recipes'),
+                        );
+                      })
+                ]),
+              ),
+              CustomButton(
+                text: 'Add your recipe',
+                onTap: () {},
+                iconPath: AppImages.addRecipe,
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

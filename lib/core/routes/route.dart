@@ -3,4 +3,5 @@ class Routes {
   static const authorization = '/';
   static const registration = '/registration';
   static const main = '/main';
+  static const details = '/details';
 }

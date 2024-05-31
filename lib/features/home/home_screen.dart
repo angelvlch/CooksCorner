@@ -1,5 +1,6 @@
 import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
+import 'package:cooks_corner/core/routes/route.dart';
 import 'package:cooks_corner/features/widgets/orange_welcom_box.dart';
 import 'package:cooks_corner/features/widgets/recipe_card.dart';
 import 'package:flutter/material.dart';
@@ -136,7 +137,9 @@ class _HomeScreenState extends State<HomeScreen>
                     crossAxisSpacing: 15,
                   ),
                   itemCount: 15,
-                  itemBuilder: (context, index) => const RecipeCard(),
+                  itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, Routes.details),
+                      child: const RecipeCard()),
                 ),
               ),
             ),

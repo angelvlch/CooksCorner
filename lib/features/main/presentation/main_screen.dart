@@ -42,15 +42,25 @@ class _MainScreenState extends State<MainScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            items: bottomNavItems,
-            currentIndex: state.tabIndex,
-            onTap: (index) {
-              BlocProvider.of<MainPageBloc>(context)
-                  .add(TabChange(tabIndex: index));
-            },
+          bottomNavigationBar: Container(
+            decoration: const BoxDecoration(
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 20,
+                ),
+              ],
+            ),
+            child: BottomNavigationBar(
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              items: bottomNavItems,
+              currentIndex: state.tabIndex,
+              onTap: (index) {
+                BlocProvider.of<MainPageBloc>(context)
+                    .add(TabChange(tabIndex: index));
+              },
+            ),
           ),
           body: [
             HomeScreen(token: token),

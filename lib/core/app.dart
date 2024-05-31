@@ -3,6 +3,7 @@ import 'package:cooks_corner/features/authorization/data/repository/authorizatio
 import 'package:cooks_corner/features/authorization/domain/use_case/authorization_use_case.dart';
 import 'package:cooks_corner/features/authorization/presentation/authorization_screen.dart';
 import 'package:cooks_corner/features/authorization/presentation/bloc/authorization_bloc.dart';
+import 'package:cooks_corner/features/detail_recipe/presentation/detail_recipe_screen.dart';
 import 'package:cooks_corner/features/main/presentation/bloc/main_page_bloc.dart';
 import 'package:cooks_corner/features/main/presentation/main_screen.dart';
 import 'package:cooks_corner/features/registration/data/data_source/remote_data_source.dart';
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
       Routes.authorization: (context) => const AuthorizationScreen(),
       Routes.registration: (context) => const RegistrationScreen(),
       Routes.main: (context) => const MainScreen(),
+      Routes.details: (context) => const DetailRecipeScreen(),
     };
   }
 
