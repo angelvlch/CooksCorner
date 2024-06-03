@@ -2,7 +2,7 @@ import 'package:cooks_corner/core/constants/app_images.dart';
 import 'package:cooks_corner/features/home/home_screen.dart';
 import 'package:cooks_corner/features/main/presentation/bloc/main_page_bloc.dart';
 import 'package:cooks_corner/features/profile/profile_screen.dart';
-import 'package:cooks_corner/features/search/search_screen.dart';
+import 'package:cooks_corner/features/search/presentation/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
