@@ -29,8 +29,12 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
                   borderRadius: BorderRadius.circular(16),
                 ),
               ), */
+              errorWidget: (context, url, error) => Container(
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 226, 158, 158)),
+              ),
               imageUrl:
-                  'https://s3-alpha-sig.figma.com/img/60a8/fb40/0136c54edf4e723f8270242c7c79b16c?Expires=1717977600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MFzVzaUGFd2KsRN4WsmYw9Aq8lOB4b6IB~LaSZ1fnlnlB6LzqeMNgiV8mlnSMZQN6Vw5yMqbZk0PkD5rdN-~68dOQur~DNlPXu6tHVyigS1p16nLv36--pjqL6Ul2d8ORwbJthonufT8hnT8D5iibJzCO3NP2R5jg6bPzcKdtMd-T5~dfwx4IWxd~rlizY7Gr95dycoDz4IpEYbkhtvRVlqpU8OirZtqCjYDu8Y13nejznBoRS6wIPonS9T3KlSR9o026h8RBYUrCVxnk3tMxw9mirn2BRAIqlTkFG-DhSr~azx-PyiUmSlAKElJM9mxjqeM9IWFaORtpjOonk83fA__',
+                  'https://s3-alpha-sig.figma.com/img/60a8/fb40/0136c54edf4e723f8270242c7c79b16c?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kwMWg4-fZRuq55dTmEt8eta5xoX-oymzMStFmhJ213ZJZUzfiN1Hw1LQs~S100nGIxS~3Zg5oiLFo2kkXgQ~b7GszvAG0iAXaaFKLBe4iskO9Sg0Uv4wqFx5ECQtY846QNVSKlprA2kE6pkswnc68mbJyLyEiZM6gu9Y0OJIrIAhrPodUlvuiLghJYGGi35AGH7T~kIZOHjN21iYw4voMDTslxGQXgdcCjp02GOxBWyhUbg4tPNAaQA1kqhBow9AF4Pp~u-7wlmCWZYCP6TdWAIx42WTiG9D89W5H9t6IeyzUk0lJip683CJwYY7~flMEIAkE~fgQXMCB~2wPHLIKw__',
             ),
             IconButton(
               onPressed: () => Navigator.pop(context),
