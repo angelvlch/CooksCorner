@@ -16,4 +16,10 @@ class AppImages {
 
   static const like = 'assets/icon/like.svg';
   static const save = 'assets/icon/savesvg.svg';
+
+  static const cookingTime = 'assets/icon/time.svg';
+  static const emptyLike = 'assets/icon/empty_like.svg';
+  static const fillLike = 'assets/icon/filled_like.svg';
+  static const emptySave = 'assets/icon/empty_save.svg';
+  static const fillSave = 'assets/icon/saved.svg';
 }
