@@ -1,7 +1,11 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:cooks_corner/core/constants/app_images.dart';
+import 'package:cooks_corner/core/routes/route.dart';
+import 'package:cooks_corner/features/authors_info/widgets/ingredient_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -25,14 +29,8 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
           CachedNetworkImage(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.sizeOf(context).height * 300 / 852,
-            //  width: ,
             fit: BoxFit.cover,
             placeholder: (context, url) => const CircularProgressIndicator(),
-            /*               imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ), */
             errorWidget: (context, url, error) => Container(
               decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 226, 158, 158)),
@@ -66,8 +64,8 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
                     children: [
                       SizedBox(
                         width: MediaQuery.sizeOf(context).width * 206 / 393,
-                        child: const Text(
-                          'Ainsley’s Jerk Chicken',
+                        child: Text(
+                          'NEXT',
                           style: AppFonts.s22w500,
                         ),
                       ),
@@ -76,9 +74,13 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
                       const SizedBox(height: 12),
                       _createDifficultyLevel(),
                       const SizedBox(height: 12),
-                      Text('by Ainsley Harriott',
-                          style: AppFonts.s12w400
-                              .copyWith(color: AppColors.textFaded)),
+                      GestureDetector(
+                        onTap: () =>
+                            Navigator.of(context).pushNamed(Routes.author),
+                        child: Text('by Ainsley Harriott',
+                            style: AppFonts.s12w400
+                                .copyWith(color: AppColors.textFaded)),
+                      ),
                       const SizedBox(height: 12),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,6 +89,12 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
                           _createSaveButton(),
                         ],
                       ),
+                      _createDescription(),
+                      const SizedBox(height: 20),
+                      Text('Ingredients'),
+                      SizedBox(height: 24),
+                      _createIngredients(),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -115,10 +123,10 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
 
   Widget _createDifficultyLevel() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
       decoration: BoxDecoration(
-          color: AppColors.orange, borderRadius: BorderRadius.circular(20)),
-      child: Text('Easy', style: AppFonts.s12w400),
+          color: AppColors.secondary, borderRadius: BorderRadius.circular(20)),
+      child: const Text('Easy', style: AppFonts.s12w400),
     );
   }
 
@@ -126,7 +134,6 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
     return Row(
       children: [
         IconButton(
-          splashRadius: 1,
           padding: EdgeInsets.zero,
           onPressed: () {
             setState(() {
@@ -136,7 +143,7 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
           icon: SvgPicture.asset(
               isFavorite ? AppImages.fillLike : AppImages.emptyLike),
         ),
-        Text('12 likes', style: AppFonts.s12w400)
+        const Text('12 likes', style: AppFonts.s12w400)
       ],
     );
   }
@@ -150,6 +157,27 @@ class _DetailRecipeScreenState extends State<DetailRecipeScreen> {
       },
       icon:
           SvgPicture.asset(isSaved ? AppImages.fillSave : AppImages.emptySave),
+    );
+  }
+
+  Widget _createDescription() {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Description', style: AppFonts.s16w500),
+        SizedBox(height: 8),
+        Text(
+            'You pick up your palette knife and then work that into. Give your meat a good old rub. That’s it, nice and hot, hot and spicy meat. He-he boy...',
+            style: AppFonts.s14w400),
+      ],
+    );
+  }
+
+  Widget _createIngredients() {
+    return Column(
+      children: List.generate(3, (index) {
+        return IngredientWidget();
+      }),
     );
   }
 }
