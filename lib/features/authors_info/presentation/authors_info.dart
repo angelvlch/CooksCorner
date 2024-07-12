@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
+import 'package:cooks_corner/core/routes/route.dart';
 import 'package:cooks_corner/features/authors_info/widgets/author_data.dart';
 import 'package:cooks_corner/features/authors_info/widgets/follow_button.dart';
+import 'package:cooks_corner/features/widgets/recipe_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +56,7 @@ class _AuthorsInfoState extends State<AuthorsInfo> {
               ),
               const SizedBox(height: 16),
               _createAuthorDescription(),
+              const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
                 child: FollowButton(
@@ -63,7 +66,9 @@ class _AuthorsInfoState extends State<AuthorsInfo> {
                       });
                     },
                     isFollow: isFollow),
-              )
+              ),
+              SizedBox(height: 20),
+              _buildRecipeGrid(),
             ],
           ),
         ),
@@ -76,6 +81,23 @@ class _AuthorsInfoState extends State<AuthorsInfo> {
       'Ainsley Denzil Dubriel Harriott MBE is an English chef and television presenter. He is known for his BBC cooking',
       style: AppFonts.s14w400.copyWith(color: AppColors.textFaded),
       textAlign: TextAlign.center,
+    );
+  }
+
+  Widget _buildRecipeGrid() {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const ScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: 0.75,
+        crossAxisCount: 2,
+        mainAxisSpacing: 15,
+        crossAxisSpacing: 15,
+      ),
+      itemCount: 15,
+      itemBuilder: (context, index) => GestureDetector(
+          onTap: () => Navigator.pushNamed(context, Routes.details),
+          child: const RecipeCard()),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:cooks_corner/core/constants/app_colors.dart';
+import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -11,14 +12,14 @@ class FollowButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        //  maximumSize: Size(double.infinity, 10),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
-        backgroundColor: AppColors.orange,
+        backgroundColor: isFollow ? AppColors.background : AppColors.orange,
       ),
       onPressed: tap,
-      child: Text(isFollow ? 'Follow' : 'Followed'),
+      child: Text(isFollow ? 'Followed' : 'Follow',
+          style: AppFonts.s14w400.copyWith(color: AppColors.background)),
     );
   }
 }
