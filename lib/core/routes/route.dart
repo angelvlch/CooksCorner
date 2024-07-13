@@ -5,4 +5,5 @@ class Routes {
   static const main = '/main';
   static const details = '/details';
   static const author = '/author';
+  static const createRecipe = '/createRecipe';
 }

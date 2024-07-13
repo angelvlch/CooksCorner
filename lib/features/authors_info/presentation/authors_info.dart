@@ -8,14 +8,14 @@ import 'package:cooks_corner/features/widgets/recipe_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AuthorsInfo extends StatefulWidget {
-  const AuthorsInfo({super.key});
+class AuthorsInfoScreen extends StatefulWidget {
+  const AuthorsInfoScreen({super.key});
 
   @override
-  State<AuthorsInfo> createState() => _AuthorsInfoState();
+  State<AuthorsInfoScreen> createState() => _AuthorsInfoScreenState();
 }
 
-class _AuthorsInfoState extends State<AuthorsInfo> {
+class _AuthorsInfoScreenState extends State<AuthorsInfoScreen> {
   bool isFollow = false;
   @override
   Widget build(BuildContext context) {

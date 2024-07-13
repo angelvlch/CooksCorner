@@ -6,6 +6,11 @@ class AppFonts {
     fontSize: 25,
     fontWeight: FontWeight.w300,
   );
+  static const s12w500 = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
   static const s20w500 = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 20,

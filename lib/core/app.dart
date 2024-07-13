@@ -4,6 +4,7 @@ import 'package:cooks_corner/features/authorization/data/repository/authorizatio
 import 'package:cooks_corner/features/authorization/domain/use_case/authorization_use_case.dart';
 import 'package:cooks_corner/features/authorization/presentation/authorization_screen.dart';
 import 'package:cooks_corner/features/authorization/presentation/bloc/authorization_bloc.dart';
+import 'package:cooks_corner/features/create_recipe/presentation/create_recipe_screen.dart';
 import 'package:cooks_corner/features/detail_recipe/presentation/detail_recipe_screen.dart';
 import 'package:cooks_corner/features/main/presentation/bloc/main_page_bloc.dart';
 import 'package:cooks_corner/features/main/presentation/main_screen.dart';
@@ -27,7 +28,8 @@ class App extends StatelessWidget {
       Routes.registration: (context) => const RegistrationScreen(),
       Routes.main: (context) => const MainScreen(),
       Routes.details: (context) => const DetailRecipeScreen(),
-      Routes.author: (context) => const AuthorsInfo(),
+      Routes.author: (context) => const AuthorsInfoScreen(),
+      Routes.createRecipe: (context) => const CreateRecipeScreen(),
     };
   }
 

@@ -1,6 +1,7 @@
 import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:cooks_corner/core/constants/app_images.dart';
+import 'package:cooks_corner/core/routes/route.dart';
 import 'package:cooks_corner/features/search/widgets/result_card.dart';
 import 'package:cooks_corner/features/widgets/custom_button.dart';
 import 'package:cooks_corner/features/widgets/custom_text_field.dart';
@@ -67,7 +68,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           CustomButton(
             text: 'Add your recipe',
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, Routes.createRecipe),
             iconPath: AppImages.addRecipe,
           ),
           const SizedBox(height: 20),
