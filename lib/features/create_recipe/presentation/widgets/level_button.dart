@@ -18,6 +18,11 @@ class LevelButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
+        padding: MaterialStateProperty.all(
+            const EdgeInsets.symmetric(horizontal: 10)),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        ),
         foregroundColor: MaterialStateColor.resolveWith((states) {
           if (selectedIndex != level['id']) {
             return AppColors.text;
@@ -26,7 +31,7 @@ class LevelButton extends StatelessWidget {
           }
         }),
         elevation: const MaterialStatePropertyAll(0),
-        textStyle: MaterialStateProperty.all(TextStyle()),
+        textStyle: MaterialStateProperty.all(AppFonts.s14w400),
         backgroundColor: MaterialStateProperty.resolveWith<Color>((_) {
           if (selectedIndex != level['id']) {
             return AppColors.inputFieldBackground;
