@@ -22,4 +22,6 @@ class AppImages {
   static const fillLike = 'assets/icon/filled_like.svg';
   static const emptySave = 'assets/icon/empty_save.svg';
   static const fillSave = 'assets/icon/saved.svg';
+
+  static const camera = 'assets/icon/camera.svg';
 }

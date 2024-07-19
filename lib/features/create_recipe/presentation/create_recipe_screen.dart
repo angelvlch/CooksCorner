@@ -2,6 +2,7 @@ import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:cooks_corner/core/constants/app_images.dart';
 import 'package:cooks_corner/features/create_recipe/presentation/widgets/level_button.dart';
+import 'package:cooks_corner/features/widgets/custom_button.dart';
 import 'package:cooks_corner/features/widgets/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +16,21 @@ class CreateRecipeScreen extends StatefulWidget {
 }
 
 class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
-  String dropdownvalue = 'kg';
-
+  final List<String> _categories = [
+    'Breakfast',
+    'Lunch',
+    'Dinner',
+  ];
+  String dropDownCategory = 'Breakfast';
   int _selectedIndex = 0;
-  var items = [
+  List<String> _measures = [
     'kg',
     'sp',
     'g',
     'Item 4',
     'Item 5',
   ];
+  String dropdownvalue = 'kg';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +40,7 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
           style: AppFonts.s20w500,
         ),
         centerTitle: true,
+        surfaceTintColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -45,6 +52,8 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
                 'Add a recipe photo',
                 style: AppFonts.s12w500.copyWith(color: AppColors.textFaded),
               ),
+              const SizedBox(height: 4),
+              _uploadPhoto(),
               const SizedBox(height: 16),
               Text(
                 'Name your recipe',
@@ -105,9 +114,55 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
               ),
               const SizedBox(height: 4),
               _createRowButton(),
+              const SizedBox(height: 16),
+              Text(
+                'Category of meal',
+                style: AppFonts.s12w500.copyWith(color: AppColors.textFaded),
+              ),
+              const SizedBox(height: 4),
+              CustomTextField(
+                hintText: '',
+                onChanged: (_) {},
+                suffixIcon: _createDropCategories(),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Preparation time',
+                style: AppFonts.s12w500.copyWith(color: AppColors.textFaded),
+              ),
+              const SizedBox(height: 4),
+              CustomTextField(
+                hintText: 'How much time does it need?(minutes)',
+                onChanged: (_) {},
+              ),
+              SizedBox(height: 92),
+              CustomButton(
+                text: 'Create a recipe',
+                onTap: null,
+              )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container _uploadPhoto() {
+    return Container(
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.inputFieldBackground,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      child: Row(
+        children: [
+          SvgPicture.asset(AppImages.camera),
+          SizedBox(width: 10),
+          Text(
+            'Upload a final photo of your dish',
+            style: AppFonts.s14w400.copyWith(color: AppColors.iconFaded),
+          ),
+        ],
       ),
     );
   }
@@ -126,7 +181,7 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
             dropdownvalue = value!;
           });
         },
-        items: items.map((String items) {
+        items: _measures.map((String items) {
           return DropdownMenuItem(
             value: items,
             child: Text(items,
@@ -154,7 +209,7 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
                 _selectedIndex = difficulties[0]['id'];
               });
             }),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         LevelButton(
             level: difficulties[1],
             selectedIndex: _selectedIndex,
@@ -163,7 +218,7 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
                 _selectedIndex = difficulties[1]['id'];
               });
             }),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         LevelButton(
             level: difficulties[2],
             selectedIndex: _selectedIndex,
@@ -173,6 +228,27 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
               });
             }),
       ],
+    );
+  }
+
+  Widget _createDropCategories() {
+    return DropdownButtonFormField(
+      icon: const Icon(Icons.keyboard_arrow_down_rounded),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      decoration: const InputDecoration(enabled: false),
+      value: dropDownCategory,
+      onChanged: (value) {
+        setState(() {
+          dropDownCategory = value!;
+        });
+      },
+      items: _categories.map((String items) {
+        return DropdownMenuItem(
+          value: items,
+          child: Text(items,
+              style: AppFonts.s14w400.copyWith(color: AppColors.textFaded)),
+        );
+      }).toList(),
     );
   }
 }

@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
           if (states.contains(MaterialState.disabled)) {
-            return AppColors.textFaded;
+            return AppColors.iconFaded;
           }
           return AppColors.orange;
         }),
