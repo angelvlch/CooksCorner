@@ -1,4 +1,4 @@
-import 'package:cooks_corner/core/constants/app_colors.dart';
+/* import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:cooks_corner/core/constants/app_images.dart';
 import 'package:cooks_corner/core/constants/app_sizes.dart';
@@ -139,5 +139,56 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
         });
       },
     );
+  }
+}
+ */
+
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class AuthorizationScreen extends StatefulWidget {
+  const AuthorizationScreen({Key? key}) : super(key: key);
+
+  @override
+  _AuthorizationScreenState createState() => _AuthorizationScreenState();
+}
+
+class _AuthorizationScreenState extends State<AuthorizationScreen> {
+  final ImagePicker _picker = ImagePicker();
+  XFile? _image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Example of Image Picker in flutter'),
+      ),
+      body: Center(
+        child: _image == null
+            ? const Text('No image selected.')
+            : Image.file(
+                File(_image!.path),
+                scale: 1,
+                semanticLabel: 'Hello',
+                excludeFromSemantics: true,
+              ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: getImage,
+        tooltip: 'Pick Image',
+        child: const Icon(Icons.add_a_photo),
+      ),
+    );
+  }
+
+  Future getImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = image;
+    });
   }
 }

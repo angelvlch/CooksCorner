@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cooks_corner/core/constants/app_colors.dart';
 import 'package:cooks_corner/core/constants/app_font.dart';
 import 'package:cooks_corner/core/constants/app_images.dart';
@@ -7,6 +9,7 @@ import 'package:cooks_corner/features/widgets/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateRecipeScreen extends StatefulWidget {
   const CreateRecipeScreen({super.key});
@@ -135,8 +138,8 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
                 hintText: 'How much time does it need?(minutes)',
                 onChanged: (_) {},
               ),
-              SizedBox(height: 92),
-              CustomButton(
+              const SizedBox(height: 92),
+              const CustomButton(
                 text: 'Create a recipe',
                 onTap: null,
               )
@@ -149,7 +152,7 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
 
   Container _uploadPhoto() {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.inputFieldBackground,
         borderRadius: BorderRadius.circular(18),
@@ -157,7 +160,7 @@ class _CreateRecipeScreenState extends State<CreateRecipeScreen> {
       child: Row(
         children: [
           SvgPicture.asset(AppImages.camera),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Text(
             'Upload a final photo of your dish',
             style: AppFonts.s14w400.copyWith(color: AppColors.iconFaded),

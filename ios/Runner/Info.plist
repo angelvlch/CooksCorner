@@ -48,5 +48,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	  <key>NSPhotoLibraryUsageDescription</key>
+    <string>cooks_corner needs access to your photo library to pick images.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>cooks_corner needs access to your camera to capture new images.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>cooks_corner needs access to your microphone to record videos.</string>
 </dict>
 </plist>
